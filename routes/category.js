@@ -2,6 +2,17 @@ const { Category } = require('../models/cetegory');
 const express = require('express');
 const router = express.Router()
 
+
+const pLimit = require('p-limit')
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+    cloud_name: process.env.cloudinary_Config_cloud_name,
+    api_key: cloudinary_Config_api_key,
+    api_secret: cloudinary_Config_api_secret
+})
+
+
 router.get(`/`, async (req, res) => {
     const categoryList = await Category.find();
 
