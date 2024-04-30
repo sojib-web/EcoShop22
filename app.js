@@ -16,7 +16,11 @@ app.use(bodyParser.json());
 //Routes
 const categoryRoutes = require('./routes/category')
 
-app.use(`./api/category`, categoryRoutes)
+app.get("/", (req, res) => {
+    res.send("wellcom to dhaka")
+})
+//middleware
+app.use(`/api/category`, categoryRoutes)
 //Database
 mongoose.connect(process.env.CONNECTION_STRING, {
     useNewUrlParser: true,
@@ -26,7 +30,7 @@ mongoose.connect(process.env.CONNECTION_STRING, {
         console.log('Database Connection Is Ready...');
         //server
         app.listen(process.env.PORT, () => {
-            console.log(`server is running http:localhost:${process.env.PORT}`);
+            console.log(`server is running http://localhost:${process.env.PORT}`);
         })
     })
     .catch((err) => {
